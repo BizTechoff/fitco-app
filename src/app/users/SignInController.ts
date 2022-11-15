@@ -172,7 +172,7 @@ export class SignInController extends ControllerBase {
         // u.validateSent = sent
         // await u.save()
     }
-
+ 
     is_israeli_id_number(idString = '') {
         let id = idString + ''
         console.log('idString', id)
