@@ -6,6 +6,7 @@ import { Conference } from '../app/core/conference/conference';
 import { Course } from '../app/core/course/course';
 import { Hotel } from '../app/core/hotel/hotel';
 import { Room } from '../app/core/hotel/room';
+import { Order } from '../app/core/order/order';
 import { SignInController } from '../app/users/SignInController';
 import { UpdatePasswordController } from '../app/users/UpdatePasswordController';
 import { User } from '../app/users/user';
@@ -13,7 +14,7 @@ import { User } from '../app/users/user';
 config()
 
 export const api = remultExpress({
-    entities: [User, Course, Conference, Hotel, Room],
+    entities: [User, Conference, Course, Hotel, Room, Order],
     controllers: [SignInController, UpdatePasswordController, NotificationService],
     getUser: request => request.session!['user'],
     dataProvider: async () => {

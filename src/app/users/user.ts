@@ -1,8 +1,9 @@
-import { Allow, BackendMethod, Entity, Fields, IdEntity, isBackend, remult } from "remult";
+import { Allow, Entity, Fields, IdEntity, isBackend, remult } from "remult";
 import { terms } from "../terms";
 import { Roles } from './roles';
 
 @Entity<User>("Users", {
+    caption: 'משתמש',
     allowApiRead: Allow.authenticated,
     allowApiUpdate: Allow.authenticated,
     allowApiDelete: Roles.admin,
@@ -18,90 +19,90 @@ import { Roles } from './roles';
 })
 export class User extends IdEntity {
 
-    @Fields.string({
+    @Fields.string<User>({
         // validate: [Validators.required, Validators.uniqueOnBackend],
         caption: 'ת.ז'
     })
     idNumber = '';
 
-    @Fields.string({
+    @Fields.string<User>({
         // validate: [Validators.required, Validators.uniqueOnBackend],
         caption: terms.username
     })
     name = '';
 
-    @Fields.string({
+    @Fields.string<User>({
         // validate: [Validators.required, Validators.uniqueOnBackend],
         caption: 'סלולרי'
     })
     mobile = '';
 
-    @Fields.string({
+    @Fields.string<User>({
         // validate: [Validators.required, Validators.uniqueOnBackend],
         caption: 'אימייל'
     })
     email = '';
 
-    @Fields.string({
+    @Fields.string<User>({
         // validate: [Validators.required, Validators.uniqueOnBackend],
         includeInApi: false,
         caption: 'קוד אימות'
     })
     validateCode = '';
 
-    @Fields.boolean({
+    @Fields.boolean<User>({
         allowApiUpdate: false,
         caption: 'קוד נשלח'
     })
     validateSent = false;
 
-    @Fields.date({
+    @Fields.date<User>({
         // validate: [Validators.required, Validators.uniqueOnBackend],
         allowApiUpdate: false,
         caption: 'שעת שליחה'
     })
     validateSentTime!: Date;
 
-    @Fields.boolean({
+    @Fields.boolean<User>({
         allowApiUpdate: false,
         caption: 'אומת'
     })
     validated = false;
 
-    @Fields.date({
+    @Fields.date<User>({
         // validate: [Validators.required, Validators.uniqueOnBackend],
         allowApiUpdate: false,
         caption: 'שעת אימות'
     })
     validateTime!: Date;
 
-    @Fields.string({ includeInApi: false })
+    @Fields.string<User>({ includeInApi: false })
     password = '';
 
-    @Fields.date({
+    @Fields.date<User>({
         allowApiUpdate: false
     })
     createDate = new Date();
 
-    @Fields.boolean({
+    @Fields.boolean<User>({
         allowApiUpdate: Roles.admin,
         caption: terms.admin
     })
     admin = false;
 
-    @Fields.boolean({
+    @Fields.boolean<User>({
         allowApiUpdate: Roles.admin,
         caption: 'מנהל'
     })
     manager = false;
 
-    @Fields.boolean({
+    @Fields.boolean<User>({
         allowApiUpdate: Roles.admin,
         caption: 'מדריך'
     })
     guide = false;
 
-    @Fields.boolean({
+    @Fields.boolean<User>({
         allowApiUpdate: Roles.admin,
         caption: 'לקוח'
     })

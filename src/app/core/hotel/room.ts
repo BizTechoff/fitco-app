@@ -7,7 +7,7 @@ import { Hotel } from "./hotel";
 })
 export class Room extends IdEntity {
 
-    @Field<Room>(() => Hotel, { caption: 'מלון' })
+    @Field<Room, Hotel>(() => Hotel, { caption: 'מלון' })
     hotel!: Hotel
 
     @Fields.string<Room>({ caption: 'תפוסה' })
@@ -29,3 +29,4 @@ export class Room extends IdEntity {
     viewNature = false
 
 }
+ 

@@ -1,5 +1,4 @@
-import { Entity, Field, Fields, IdEntity, remult } from "remult";
-import { User } from "../../users/user";
+import { Entity, Fields, IdEntity, remult } from "remult";
 
 @Entity<Conference>('conferences', {
     caption: 'כנסים',
@@ -14,9 +13,9 @@ export class Conference extends IdEntity {
     address = ''
 
     @Fields.dateOnly<Conference>({ caption: 'מתאריך' })
-    fd!:Date
+    fd!: Date
 
     @Fields.dateOnly<Conference>({ caption: 'עד תאריך' })
-    td!:Date
+    td!: Date
 
 }
