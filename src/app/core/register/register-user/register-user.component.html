@@ -1,0 +1,41 @@
+<div class="fitcoapp-container">
+    <div class="fitcoapp-fitcoapp">
+        <!-- <img src="/assets/image31198-tmg-200w.png" alt="image31198" class="fitcoapp-image3" /> NZ -->
+        <img src="/assets/image11199-jbie-200h.png" alt="image11199" class="fitcoapp-image-title" />
+        <img src="/assets/image21110-6u2-400w.png" alt="image21110" class="fitcoapp-image2" />
+        <span class="fitcoapp-text"><span>כנס הפיטנס של ישראל</span></span>
+
+        <!-- [style.display]="this.step===1?'block': 'none'" -->
+        <div id="formStep1" class="fitcoapp-mobile" *ngIf="step===1"> 
+            <span class="fitcoapp-mobile-text">
+                <span> 
+                    <span>לכניסה נא להזין</span>
+                    <br /> 
+                    <span>מספר סלולרי</span>
+                </span>
+            </span> 
+            <input type="number" maxlength="10" class="fitcoapp-mobile-input" [(ngModel)]="signInCtrl.mobile" autofocus>
+            <button mat-raised-button class="fitcoapp-mobile-button" (click)="sendValidationCode()">כניסה</button>
+        </div>
+
+        <!-- [style.display]="this.step===2?'block': 'none'" -->
+        <div id="formStep2" class="fitcoapp-mobile" *ngIf="step===2" [@next]> 
+            <span class="fitcoapp-mobile-text1">
+                <span>
+                    <span>ברגעים אלו נשלח אליך קוד אימות באימייל</span>
+                </span> 
+            </span>
+            <span class="fitcoapp-mobile-text">
+                <span>
+                    <span>נא להזין קוד אימות</span>
+                </span>
+            </span>
+            <input type="number" maxlength="10" class="fitcoapp-mobile-input" [(ngModel)]="signInCtrl.validateCode" autofocus>
+            <button mat-raised-button class="fitcoapp-mobile-button" (click)="signInUser()">אימות</button>
+        </div>
+        
+        <span class="fitcoapp-footer">
+            <span>31 למרץ - 2 באפריל 2022 ים המלח</span>
+        </span>
+    </div>
+</div>

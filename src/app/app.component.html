@@ -1,0 +1,58 @@
+<div style="height:100%;display:flex;flex-direction: column;">
+  <!-- display: none; -->
+  <mat-toolbar color="primary"
+    style="border: 3px solid rgba(8, 17, 48, 1); flex-shrink: 0; justify-content: space-between; background: rgba(8, 17, 48, 1); background-image: url(/assets/image11199-jbie-200h.png); background-size: 70% 100%; background-repeat: no-repeat; background-position: center;">
+    <button *ngIf="remult.authenticated()" mat-button class="sidenav-toggle" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>  
+    <!-- <span class="toolbar-title">{{currentTitle()}}</span> -->
+    <!-- <ng-container> -->
+      <!-- <span>שלום</span> -->
+      <!-- <button mat-flat-button color="primary" (click)="signIn($event)">{{terms.signIn}}</button> -->
+    <!-- </ng-container> --> 
+    {{remult.authenticated()}}
+    <ng-container *ngIf="remult.authenticated()">
+      <button mat-flat-button style="margin: -18px; background-color: transparent; color: white;" [matMenuTriggerFor]="menu">{{remult.user!.name}}</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="updateInfo()">{{terms.updateInfo}}</button>
+        <!-- <button mat-menu-item (click)="changePassword()">{{terms.changePassword}}</button> -->
+        <button mat-menu-item (click)="signOut()">{{terms.signOut}}</button>
+      </mat-menu>
+    </ng-container>
+  </mat-toolbar>
+  <mat-sidenav-container class="app-sidenav-container"
+    style="background: rgba(8, 17, 48, 1); background-image: url(/assets/image21110-6u2-400w.png); background-repeat: no-repeat;  background-size: 100% 100%; background-position: center;">
+
+    <mat-sidenav #sidenav class="app-sidenav mat-elevation-z10 no-print" [opened]="!uiService.isScreenSmall()"
+      style="background: rgba(8, 17, 48, 1);" [mode]="uiService.isScreenSmall()?'over':'side'">
+      <div style="width:100%;text-align: center">
+
+      </div>
+      <h4 *ngIf="remult.authenticated()">{{terms.hello}} {{remult.user!.name}}</h4>
+      <mat-nav-list role="list">
+        <ng-container *ngFor="let m of router.config">
+          <mat-list-item *ngIf="shouldDisplayRoute(m)" routerLinkActive="active-route">
+            <a matLine [routerLink]="m.path" (click)="routeClicked()">{{routeName(m)}}</a>
+          </mat-list-item>
+
+
+        </ng-container>
+      </mat-nav-list>
+
+    </mat-sidenav>
+    <div class="app-sidenav-content ">
+
+
+      <div class="wrapper" style="height:100%">
+        <router-outlet></router-outlet>
+      </div>
+
+    </div>
+
+  </mat-sidenav-container>
+
+  <span class="footer" style="text-align: center; background: rgba(8, 17, 48, 1); color: white;">
+    <span>31 במרץ עד 2 באפריל 2022 ים המלח</span>
+  </span> 
+
+</div>
