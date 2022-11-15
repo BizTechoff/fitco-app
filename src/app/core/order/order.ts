@@ -15,6 +15,6 @@ export class Order extends IdEntity {
     room!: Room
 
     @Fields.number<Order>({ caption: 'סכום' })
-    sum = ''
+    sum = 0
 
 }

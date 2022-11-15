@@ -10,8 +10,8 @@ export class Room extends IdEntity {
     @Field<Room, Hotel>(() => Hotel, { caption: 'מלון' })
     hotel!: Hotel
 
-    @Fields.string<Room>({ caption: 'תפוסה' })
-    capacity = ''
+    @Fields.number<Room>({ caption: 'תפוסה' })
+    capacity = 0
 
     @Fields.number<Room>({ caption: 'קומה' })
     floor = 0
@@ -29,4 +29,3 @@ export class Room extends IdEntity {
     viewNature = false
 
 }
- 

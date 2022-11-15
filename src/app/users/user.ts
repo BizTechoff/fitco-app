@@ -1,8 +1,9 @@
-import { Allow, Entity, Fields, IdEntity, isBackend, remult } from "remult";
+import { Allow, Entity, Field, Fields, IdEntity, isBackend, remult } from "remult";
+import { ShirtSize } from "../core/course/ShirtSize";
 import { terms } from "../terms";
 import { Roles } from './roles';
 
-@Entity<User>("Users", {
+@Entity<User>("users", {
     caption: 'משתמש',
     allowApiRead: Allow.authenticated,
     allowApiUpdate: Allow.authenticated,
@@ -43,6 +44,10 @@ export class User extends IdEntity {
     })
     email = '';
 
+    @Field<User, ShirtSize>(() => ShirtSize, { caption: 'מידת חולצה' })
+    shirtSize!: ShirtSize
+    
+
     @Fields.string<User>({
         // validate: [Validators.required, Validators.uniqueOnBackend],
         includeInApi: false,
@@ -78,6 +83,7 @@ export class User extends IdEntity {
 
     @Fields.string<User>({ includeInApi: false })
     password = '';
+
 
     @Fields.date<User>({
         allowApiUpdate: false

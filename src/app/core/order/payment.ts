@@ -1,5 +1,5 @@
 import { Entity, Field, Fields, IdEntity, remult } from "remult";
-import { Order } from "../order/order";
+import { Order } from "./order";
 
 @Entity<Payment>('payments', {
     caption: 'תשלומים',

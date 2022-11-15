@@ -1,12 +1,11 @@
-import { Injectable, NgZone, ErrorHandler } from "@angular/core";
+import { ErrorHandler, Injectable, NgZone } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { Remult } from "remult";
 
-import { YesNoQuestionComponent } from "./yes-no-question/yes-no-question.component";
 import { CommonUIElementsPluginsService, openDialog, SelectValueDialogComponent } from "common-ui-elements";
 import { terms } from "../terms";
-import { UITools } from "./UITools";
 import { TextAreaDataControlComponent } from "./textarea-data-control/textarea-data-control.component";
+import { UITools } from "./UITools";
+import { YesNoQuestionComponent } from "./yes-no-question/yes-no-question.component";
 
 
 @Injectable()
