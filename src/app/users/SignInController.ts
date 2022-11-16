@@ -21,7 +21,7 @@ export class SignInController extends ControllerBase {
         caption: terms.username//,
         // validate: Validators.required
     })
-    user = ''; 
+    user = '';
 
     @Fields.string({
         caption: terms.password,
@@ -83,45 +83,45 @@ export class SignInController extends ControllerBase {
      * 1. The first user that signs in, is created as a user and is determined as admin.
      * 2. When a user that has no password signs in, that password that they've signed in with is set as the users password
      */
-    async signIn() {
-        let result: UserInfo | undefined;
-        // const userRepo = remult.repo(User);
-        // let u = await userRepo.findFirst({ name: this.user });
-        // if (!u) {
-        //     if (await userRepo.count() === 0) { //first ever user is the admin
-        //         u = await userRepo.insert({
-        //             name: this.user,
-        //             admin: true
-        //         })
-        //     }
-        // }
-        // if (u) {
-        //     if (!u.password) { // if the user has no password defined, the first password they use is their password
-        //         u.hashAndSetPassword(this.password);
-        //         await u.save();
-        //     }
+    // async signIn() {
+    //     let result: UserInfo | undefined;
+    // const userRepo = remult.repo(User);
+    // let u = await userRepo.findFirst({ name: this.user });
+    // if (!u) {
+    //     if (await userRepo.count() === 0) { //first ever user is the admin
+    //         u = await userRepo.insert({
+    //             name: this.user,
+    //             admin: true
+    //         })
+    //     }
+    // }
+    // if (u) {
+    //     if (!u.password) { // if the user has no password defined, the first password they use is their password
+    //         u.hashAndSetPassword(this.password);
+    //         await u.save();
+    //     }
 
-        //     if (await u.passwordMatches(this.password)) {
-        //         result = {
-        //             id: u.id,
-        //             roles: [],
-        //             name: u.name
-        //         };
-        //         if (u.admin) {
-        //             result.roles!.push(Roles.admin);
-        //         }
-        //     }
-        // }
+    //     if (await u.passwordMatches(this.password)) {
+    //         result = {
+    //             id: u.id,
+    //             roles: [],
+    //             name: u.name
+    //         };
+    //         if (u.admin) {
+    //             result.roles!.push(Roles.admin);
+    //         }
+    //     }
+    // }
 
-        // if (result) {
-        //     const req = getRequest();
-        //     req.session!['user'] = result;
-        //     if (this.rememberOnThisDevice)
-        //         req.sessionOptions.maxAge = 365 * 24 * 60 * 60 * 1000; //remember for a year
-        return result;
-        // }
-        // throw new Error(terms.invalidSignIn);
-    }
+    // if (result) {
+    //     const req = getRequest();
+    //     req.session!['user'] = result;
+    //     if (this.rememberOnThisDevice)
+    //         req.sessionOptions.maxAge = 365 * 24 * 60 * 60 * 1000; //remember for a year
+    // return result;
+    // }
+    // throw new Error(terms.invalidSignIn);
+    // }
 
     @BackendMethod({ allowed: true })
     /**
@@ -139,24 +139,24 @@ export class SignInController extends ControllerBase {
         // console.log(22, sent)
     }
 
+    async signIn() {
+        let result: UserInfo | undefined;
+        return result
+    }
+
     @BackendMethod({ allowed: () => !remult.authenticated() })
     async checkIdNumber() {
-        let exists = false
+        let error = ''
         console.log('this.idNumber', this.idNumber)
-        if (this.is_israeli_id_number(this.idNumber)) {
-            let u = await remult.repo(User).findFirst(
-                { idNumber: this.idNumber },
-                {
-                    useCache: false,
-                    createIfNotFound: true
-                })
-            exists = !u.isNew()
-            console.log(`idNumber ${u.idNumber} ${exists ? '' : 'NOT'} EXISTS`)
-        }
-        else {
+        if (!this.is_israeli_id_number()) {
             console.log(`idNumber ${this.idNumber} NOT VALID`)
+            error = 'לא תקין'
         }
-        return exists
+        if (!await this.is_exsits_id_number()) {
+            console.log(`idNumber ${this.idNumber} NOT EXISTS`)
+            error = 'לא קיים'
+        }
+        return error
         // u.validateCode = code.toString()
         // u.validateSentTime = new Date()
         // u.validateTime = undefined!
@@ -172,9 +172,9 @@ export class SignInController extends ControllerBase {
         // u.validateSent = sent
         // await u.save()
     }
- 
-    is_israeli_id_number(idString = '') {
-        let id = idString + ''
+
+    is_israeli_id_number() {
+        let id = this.idNumber + ''
         console.log('idString', id)
         // let id = String(idNmber).trim();
         if (id.length > 9 || isNaN(parseInt(id))) return false;
@@ -182,9 +182,19 @@ export class SignInController extends ControllerBase {
         console.log('Array.from(id, Number)', Array.from(id))
         return Array.from(id, Number).reduce((counter, digit, i) => {
             const step = digit * ((i % 2) + 1);
-            
+
             return counter + (step > 9 ? step - 9 : step);
         }) % 10 === 0;
+    }
+
+    async is_exsits_id_number(createIfNotFound = true) {
+        let u = await remult.repo(User).findFirst(
+            { idNumber: this.idNumber },
+            {
+                useCache: false,
+                createIfNotFound: createIfNotFound
+            })
+        return !u.isNew()
     }
 
     @BackendMethod({ allowed: () => !remult.authenticated() })

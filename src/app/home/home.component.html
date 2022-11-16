@@ -1,30 +1,41 @@
 <div style="display: flex; flex-direction: column; height: 100%;" *ngIf="step===1">
-    <div style="height: 50%; display: flex; flex-direction: column; justify-content: center; text-align: center; align-items: center;">
-        <span style="color: white; font-size: xx-large; line-height: 50px;">
+    <div
+        style="height: 70%; display: flex; flex-direction: column; justify-content: center; text-align: center; align-items: center;">
+        <span style="color: white; font-size: xx-large; line-height: 45px;">
             <span>לכניסה נא להזין</span>
             <br />
             <span>מספר תעודת זהות</span>
         </span>
-    </div> 
-    <div style="height: auto; display: flex; flex-direction: row; justify-content: center; text-align: center; align-items: center;">
-        <input type="number" maxlength="10" [(ngModel)]="signInCtrl.idNumber" autofocus style="height: 30px; text-align: center; font-size: larger; font-weight: bolder;">
-        <button mat-flat-button (click)="checkIdNumber()" style="rotate: calc(180deg); background: transparent; color: white; ">
-            <mat-icon style="font-size: 40px; padding-bottom: 17px;">play_arrow</mat-icon>
-        </button>
-    </div>
-    <div style="height: 40%; display: flex; flex-direction: column; justify-content: center; text-align: center; align-items: center;">
+        <!-- inputmode="numeric" -->
+        <div
+            style="padding-top: 20px; padding-right: 20px; height: auto; display: flex; flex-direction: row; justify-content: center; text-align: center; align-items: center;">
+            <!-- <data-control autofocus style="background-color: white; height: 30px; text-align: center; font-size: larger; font-weight: bolder;" [field]="this.signInCtrl.$.idNumber"></data-control> -->
+            <input type="text" onkeypress="isNumber22($event)" maxlength="10" [(ngModel)]="signInCtrl.idNumber"
+                autofocus style="height: 30px; text-align: center; font-size: larger; font-weight: bolder;">
+            <button mat-flat-button (click)="signIn()"
+                style="rotate: calc(180deg); background: transparent; color: white; ">
+                <mat-icon style="font-size: 40px; padding-bottom: 17px;">play_arrow</mat-icon>
+            </button>
+        </div>
+        <div style="height: auto; display: flex; flex-direction: row;">
+            <span style="color: red;"> {{ errorInput }} </span>
+        </div>
+        <div
+            style=" background-size: 70% 100%; background-repeat: no-repeat; background-position: center;background-image: url(../../assets/sea.webp);height: 30%; display: flex; flex-direction: column; justify-content: center; text-align: center; align-items: center;">
+        </div>
+
     </div>
 </div>
 
-<div class="fitcoapp-container" style="display: none;">
-    <div class="fitcoapp-fitcoapp">
-        <!-- <img src="/assets/image31198-tmg-200w.png" alt="image31198" class="fitcoapp-image3" /> NZ -->
-        <!-- <img src="/assets/image11199-jbie-200h.png" alt="image11199" class="fitcoapp-image-title" />
+<!-- <div class="fitcoapp-container" style="display: none;">
+    <div class="fitcoapp-fitcoapp"> -->
+<!-- <img src="/assets/image31198-tmg-200w.png" alt="image31198" class="fitcoapp-image3" /> NZ -->
+<!-- <img src="/assets/image11199-jbie-200h.png" alt="image11199" class="fitcoapp-image-title" />
         <img src="/assets/image21110-6u2-400w.png" alt="image21110" class="fitcoapp-image2" />
         <span class="fitcoapp-text"><span>כנס הפיטנס של ישראל</span></span> -->
 
-        <!-- [style.display]="this.step===1?'block': 'none'" -->
-        <div id="formStep1" class="fitcoapp-mobile" *ngIf="step===1">
+<!-- [style.display]="this.step===1?'block': 'none'" -->
+<!-- <div id="formStep1" class="fitcoapp-mobile" *ngIf="step===1">
             <span class="fitcoapp-mobile-text">
                 <span>
                     <span>לכניסה נא להזין</span>
@@ -38,10 +49,10 @@
                 style="rotate: calc(180deg);">
                 <mat-icon>play_arrow</mat-icon>
             </button>
-        </div>
+        </div> -->
 
-        <!-- [style.display]="this.step===2?'block': 'none'" -->
-        <div id="formStep2" class="fitcoapp-mobile" *ngIf="step===2" [@next]>
+<!-- [style.display]="this.step===2?'block': 'none'" -->
+<!-- <div id="formStep2" class="fitcoapp-mobile" *ngIf="step===2" [@next]>
             <span class="fitcoapp-mobile-text1">
                 <span>
                     <span>ברגעים אלו נשלח אליך קוד אימות באימייל</span>
@@ -55,10 +66,10 @@
             <input type="number" maxlength="10" class="fitcoapp-mobile-input" [(ngModel)]="signInCtrl.validateCode"
                 autofocus>
             <button mat-raised-button class="fitcoapp-mobile-button" (click)="signInUser()">אימות</button>
-        </div>
+        </div> -->
 
-        <!-- <span class="fitcoapp-footer">
+<!-- <span class="fitcoapp-footer">
             <span>31 למרץ - 2 באפריל 2022 ים המלח</span>
         </span> -->
-    </div>
-</div>
+<!-- </div>
+</div> -->
