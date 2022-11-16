@@ -13,7 +13,7 @@ export class SignInController extends ControllerBase {
     @Fields.string({
         // validate: [Validators.required, Validators.uniqueOnBackend],
         caption: 'ת.ז',
-        validate: Validators.required
+        validate: Validators.required.withMessage(terms.requiredField)
     })
     idNumber = '';
 
@@ -21,7 +21,7 @@ export class SignInController extends ControllerBase {
         caption: terms.username//,
         // validate: Validators.required
     })
-    user = '';
+    user = ''; 
 
     @Fields.string({
         caption: terms.password,

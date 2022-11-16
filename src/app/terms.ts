@@ -23,7 +23,8 @@ export const terms = {
     passwordDeletedSuccessful: "Password Deleted",
     passwordDeleteConfirmOf: "Are you sure you want to delete the password of",
     rememberOnThisDevice: "Remember on this device?",
-    RTL: false
+    RTL: false,
+    requiredField: 'שדה חובה'
 }
 
 declare module 'remult' {

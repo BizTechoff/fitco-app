@@ -1,18 +1,18 @@
 <div style="display: flex; flex-direction: column; height: 100%;" *ngIf="step===1">
-    <div style="display: flex; flex-direction: column; justify-content: center; height: 50%; text-align: center; align-items: center;">
+    <div style="height: 50%; display: flex; flex-direction: column; justify-content: center; text-align: center; align-items: center;">
         <span style="color: white; font-size: xx-large; line-height: 50px;">
             <span>לכניסה נא להזין</span>
             <br />
             <span>מספר תעודת זהות</span>
         </span>
     </div> 
-    <div style="display: flex; flex-direction: row; justify-content: center; height: auto; text-align: center; align-items: center; margin-right: 50px;">
+    <div style="height: auto; display: flex; flex-direction: row; justify-content: center; text-align: center; align-items: center;">
         <input type="number" maxlength="10" [(ngModel)]="signInCtrl.idNumber" autofocus style="height: 30px; text-align: center; font-size: larger; font-weight: bolder;">
-        <button mat-flat-button (click)="checkIdNumber()" style="rotate: calc(180deg); background: transparent; color: white; scale: 200%;">
-            <mat-icon>play_arrow</mat-icon>
+        <button mat-flat-button (click)="checkIdNumber()" style="rotate: calc(180deg); background: transparent; color: white; ">
+            <mat-icon style="font-size: 40px; padding-bottom: 17px;">play_arrow</mat-icon>
         </button>
     </div>
-    <div style="display: flex; flex-direction: column; justify-content: center; height: 40%; text-align: center; align-items: center;">
+    <div style="height: 40%; display: flex; flex-direction: column; justify-content: center; text-align: center; align-items: center;">
     </div>
 </div>
 
