@@ -22,7 +22,6 @@ import { TextAreaDataControlComponent } from './common/textarea-data-control/tex
 import { UIToolsService } from './common/UIToolsService';
 import { YesNoQuestionComponent } from './common/yes-no-question/yes-no-question.component';
 import { CourseListComponent } from './core/course/course-list/course-list.component';
-import { RegisterUserComponent } from './core/register/register-user/register-user.component';
 import { HomeComponent } from './home/home.component';
 import { AdminGuard, CustomerGuard, GuideGuard, ManagerGuard } from "./users/AuthGuard";
 import { SignInController } from './users/SignInController';
@@ -38,7 +37,6 @@ import { UsersComponent } from './users/users.component';
     YesNoQuestionComponent,
     DataAreaDialogComponent,
     TextAreaDataControlComponent,
-    RegisterUserComponent,
     CourseListComponent
   ],
   imports: [
